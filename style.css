@@ -1,0 +1,107 @@
+html, body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #d3d3d3;
+}
+
+input, button, select, textarea{
+  display: block;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  background: none;
+  background-color: #eee;
+  color: 222;
+  padding: 8px;
+  margin: 0;
+}
+input:not([type="submit"]):not([type="reset"]), select, textarea{
+  width: 100%;
+}
+.icon-button{
+  border: none;
+  background: none;
+}
+
+.main-container{
+  display: block;
+  position: relative;
+  width: 960px;
+  max-width: 90%;
+  margin: 28px auto 36px;
+}
+
+.timesheet{
+  width: 100%;
+  border-collapse: collapse;
+}
+.timesheet .sheet{
+  display: inline-block;
+  width: 12%;
+  vertical-align: top;
+}
+.timesheet .sheet .note{
+  display: block;
+  margin: 4px;
+  border: 1px solid #aaa;
+  padding: 4px;
+}
+
+.form .row{
+  display: block;
+  padding-top: 8px;
+}
+
+.modal-overlay{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.7);
+}
+.modal{
+  display: none;
+  position: fixed;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ddd;
+  border: 1px solid #333;
+  padding: 0;
+  margin: 0;
+  width: 320px;
+  max-width: 90%;
+  overflow-x: auto;
+  max-height: 100%;
+}
+.modal .modal-head, .modal .modal-body{
+  display: block;
+  box-sizing: border-box;
+}
+.modal .modal-head{
+  height: 32px;
+}
+.modal .modal-head h2{
+  float: left;
+  padding: 8px;
+  font-size: 16px;
+  line-height: 1;
+}
+.modal .modal-head .close-action{
+  display: block;
+  float: right;
+  margin-right: 8px;
+}
+.modal .modal-body{
+  padding: 8px;
+}
+.modal-overlay.visible, .modal.visible{
+  display: block;
+}
+
+.add-note-action{
+  display: block;
+  box-sizing: border-box;
+  margin: 6px:
+}

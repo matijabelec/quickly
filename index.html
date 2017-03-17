@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Simple scheduling web app">
+    <meta name="keywords" content="Schedule,Calendar,Timesheet">
+    <meta name="author" content="Matija Belec">
+    <title>Quickly!</title>
+
+    <link rel="stylesheet" href="vendor/meyerweb/reset.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-app="app">
+
+    <main class="main-container" ng-controller="appController as vm" ng-cloak>
+
+      <div class="timesheet">
+        <div ng-repeat="sheet in vm.timesheet" class="sheet">
+          <h2>{{ sheet.label }}</h2>
+          <ol ng-if="sheet.notes && sheet.notes.length">
+            <li ng-repeat="note in sheet.notes | orderBy:'hour' " class="note">
+              <h3>{{ note.title }}</h3>
+              <p>{{ note.hour }}:00</p>
+              <p>{{ note.description }}</p>
+              <button class="icon-button" ng-click="vm.removeNote(note)"><i class="fa fa-close"></i></button>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <button class="add-note-action" ng-click="vm.showAddNoteDialog()">Add</button>
+
+      <div class="modal-overlay" ng-class="{visible: vm.isDialogOpen}"></div>
+      <div class="form-container modal" ng-class="{visible: vm.isDialogOpen}">
+        <div class="modal-head">
+          <h2>New note</h2>
+          <button class="close-action icon-button" ng-click="vm.closeDialog()"><i class="fa fa-close"></i></button>
+        </div>
+        <div class="modal-body">
+          <form name="form" class="form" ng-submit="vm.addNote(vm.note)">
+
+            <label class="row">
+              <div>Title: </div>
+              <input type="text" name="title" ng-model="vm.note.title">
+              </select>
+            </label>
+
+            <label class="row">
+              <div>Description: </div>
+              <textarea name="description" ng-model="vm.note.description" rows="4"></textarea>
+              </select>
+            </label>
+
+            <label class="row">
+              <div>Day: </div>
+              <select name="day" ng-model="vm.note.day" ng-options="day.id as day.label for day in vm.days"></select>
+            </label>
+
+            <label class="row">
+              <div>Day: </div>
+              <input type="number" min="0" max="23" name="hour" ng-model="vm.note.hour">
+            </label>
+
+            <div class="row">
+              <button>Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script src="vendor/angular.js/1.6.2/angular.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
