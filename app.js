@@ -12,6 +12,9 @@
       vm.addNote = addNote;
       vm.removeNote = removeNote;
       vm.note = {};
+      vm.lastStep = 4;
+      vm.prevStep = prevStep;
+      vm.nextStep = nextStep;
       vm.days = [
         { id: 'monday', label: 'Monday' },
         { id: 'tuesday', label: 'Tuesday' },
@@ -21,12 +24,26 @@
         { id: 'saturday', label: 'Saturday' },
         { id: 'sunday', label: 'Sunday' },
       ];
-      vm.hours = [];
       vm.timesheet = [
         { id: 'monday', label: 'Monday', notes: [] },
         { id: 'tuesday', label: 'Tuesday', notes: [] },
-        { id: 'wednesday', label: 'Wednesday', notes: [] },
-        { id: 'thursday', label: 'Thursday', notes: [] },
+        {
+          id: 'wednesday',
+          label: 'Wednesday',
+          notes: [
+            { day: 'wednesday', hour: 8, title: 'App', description: '"developanje"' },
+            { day: 'wednesday', hour: 12, title: 'Hrkanje', description: 'spavanje' },
+          ]
+        },
+        {
+          id: 'thursday',
+          label: 'Thursday',
+          notes: [
+            { day: 'thursday', hour: 8, title: 'App', description: '"developan aerfesgtje"' },
+            { day: 'thursday', hour: 12, title: 'Hrkanje', description: 'spavanje' },
+            { day: 'thursday', hour: 9, title: 'Hrk', description: 'test' },
+          ]
+        },
         { id: 'friday', label: 'Friday', notes: [] },
         { id: 'saturday', label: 'Saturday', notes: [] },
         { id: 'sunday', label: 'Sunday', notes: [] },
@@ -39,11 +56,16 @@
         description: ''
       };
 
-      for(var i=0; i<24; i++){
-        vm.hours.push(i);
+      function prevStep(step){
+        vm.step = (step-1<1 ? 1 : step-1);
+      }
+
+      function nextStep(step){
+        vm.step = (step+1>vm.lastStep ? vm.lastStep : step+1);
       }
 
       function showAddNoteDialog(){
+        vm.step = 1;
         vm.note = angular.copy(noteDefault);
         vm.isDialogOpen = true;
       }

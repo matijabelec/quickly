@@ -30,22 +30,55 @@ input:not([type="submit"]):not([type="reset"]), select, textarea{
 }
 
 .timesheet{
+  display: table;
   width: 100%;
   border-collapse: collapse;
 }
 .timesheet .sheet{
-  display: inline-block;
+  display: table-cell;
   width: 12%;
   vertical-align: top;
+  padding-left: 2px;
+  padding-right: 2px;
+  border-right: 1px solid #888;
+}
+.timesheet .sheet:last-child{
+  border-right: none;
+}
+.timesheet .sheet h2{
+  text-align: center;
+  border-bottom: 1px solid #aaa;
+  margin: 0 -2px;
+  padding-bottom: 8px;
 }
 .timesheet .sheet .note{
   display: block;
-  margin: 4px;
-  border: 1px solid #aaa;
-  padding: 4px;
+  box-sizing: border-box;
+  position: relative;
+  padding: 32px 16px 16px;
+  margin-top: 4px;
+  border-bottom: 1px solid #aaa;
+}
+.timesheet .sheet .note .remove-note-action{
+  display: block;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 0;
+}
+.timesheet .sheet .note h3{
+  font-size: 18px;
+  padding-bottom: 8px;
+}
+.timesheet .sheet .note .time{
+  display: block;
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  font-size: 12px;
 }
 
-.form .row{
+.row{
   display: block;
   padding-top: 8px;
 }
@@ -74,24 +107,25 @@ input:not([type="submit"]):not([type="reset"]), select, textarea{
   max-width: 90%;
   overflow-x: auto;
   max-height: 100%;
+  border-radius: 3px;
+  box-shadow: 3px 3px 7px 1px #1a1a1a;
 }
-.modal .modal-head, .modal .modal-body{
+.modal .modal-body{
   display: block;
   box-sizing: border-box;
 }
+.modal .close-action{
+  display: block;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
 .modal .modal-head{
-  height: 32px;
+  padding: 16px 8px 4px;
+  text-align: center;
 }
 .modal .modal-head h2{
-  float: left;
-  padding: 8px;
-  font-size: 16px;
-  line-height: 1;
-}
-.modal .modal-head .close-action{
-  display: block;
-  float: right;
-  margin-right: 8px;
+  font-size: 22px;
 }
 .modal .modal-body{
   padding: 8px;
@@ -100,8 +134,28 @@ input:not([type="submit"]):not([type="reset"]), select, textarea{
   display: block;
 }
 
+
 .add-note-action{
   display: block;
   box-sizing: border-box;
   margin: 6px:
+}
+
+.stepper{
+  text-align: center;
+}
+.stepper li{
+  display: inline-block;
+  padding: 4px;
+}
+.stepper li.selected{
+  color: #dd2222;
+}
+
+.action-button{
+  display: inline-block;
+}
+.action-button.pull-right{
+  width: 60%;
+  float: right;
 }
